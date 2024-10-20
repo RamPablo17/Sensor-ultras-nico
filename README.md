@@ -14,3 +14,13 @@ Para empezar a utilizar el sensor HC-SR04 solo necesitas una placa Arduino, en e
 <h2> Programa 1</h2>
 
 <h3>Programa 2: Control de un motor por medio del sensor últrasonico</h3>
+<p>Nombre del archivo:Prog2_ControlDeUnMotor</p>
+<p>Este código controla un motor utilizando un sensor ultrasónico conectado a un Arduino. El sensor mide la distancia de un objeto, y si detecta algo a 5 cm o menos, apaga el motor. Si no hay un objeto cercano, el motor permanece encendido. El código mide continuamente la distancia y ajusta el estado del motor en función de esa lectura. Además, muestra la distancia medida en el monitor serial para su monitoreo. </p>
+<p>Mayor a 5 cm</p>
+
+![image](https://github.com/user-attachments/assets/9b6adb85-18d8-4de4-a216-06fe71ea2560)
+
+<p>Manor a 5 cm</p>
+
+![image](https://github.com/user-attachments/assets/d0b72be2-ff9f-46f9-929c-a60cd279d60c)
+
