@@ -10,3 +10,7 @@ Para empezar a utilizar el sensor HC-SR04 solo necesitas una placa Arduino, en e
 
 ![image](https://github.com/user-attachments/assets/d20728fa-e0d0-4d93-924f-eadfe164b751)
 ![image](https://github.com/user-attachments/assets/614f8766-50ba-4815-8fdd-fc78de4fdd7f)
+
+<h2> Programa 1</h2>
+
+<h3>Programa 2: Control de un motor por medio del sensor últrasonico</h3>
