@@ -7,9 +7,11 @@ const int echoPin2 = 8;   // Pin de eco (Echo) del segundo sensor conectado al p
 // Pines del sensor 1(Frente Izquierdo)
 const int trigPin3 = 9;  // Pin de disparo (Trig) del tercer sensor conectado al pin 10 del Arduino
 const int echoPin3 = 10;   // Pin de eco (Echo) del tercer sensor conectado al pin 9 del Arduino
-// Pines del motore 3
+// Pines del motor
 const int motorPin1 = 13; // Primer motor conectado al pin 13 del Arduino
-const int motorPin2 = 6;  // Segundo motor conectado al pin 6 del Arduino
+const int motorPin2 = 12;  // Segundo motor conectado al pin 12 del Arduino
+//Pin de los leds traseros
+const int LedTrasero = 4; //Pin leds traseros
 
 // Variables para el tiempo y la distancia de los tres sensores
 long duration1, duration2, duration3;  // Duración del eco para cada sensor
@@ -28,13 +30,17 @@ void setup() {
   pinMode(trigPin3, OUTPUT);  // Establecer el pin Trig del tercer sensor como salida
   pinMode(echoPin3, INPUT);   // Establecer el pin Echo del tercer sensor como entrada
   
+  // Configuración de los pines del motor como salida
+  pinMode(motorPin1, OUTPUT);  
+  pinMode(motorPin2, OUTPUT);  
+
   // Iniciar la comunicación serial para depuración
   Serial.begin(9600);
   
-    // Mostrar un mensaje en el monitor serial indicando que el programa esperará 5 segundos
+  // Mostrar un mensaje en el monitor serial indicando que el programa esperará 2 segundos
   Serial.println("Esperando 2 segundos antes de arrancar los motores...");
 
-  // Pausa de 5 segundos antes de comenzar a ejecutar el loop
+  // Pausa de 2 segundos antes de comenzar a ejecutar el loop
   delay(2000);
 }
 
@@ -56,7 +62,6 @@ int getDistance(int trigPin, int echoPin) {
   return duration * 0.034 / 2;  // Regresar la distancia calculada
 }
 
-
 void loop() {
   // Medir la distancia con el primer sensor ultrasónico
   distance1 = getDistance(trigPin1, echoPin1);
@@ -75,4 +80,22 @@ void loop() {
   Serial.print("Distancia Frente izquierdo: ");
   Serial.print(distance3);
   Serial.println(" cm");
+  
+  // Verificar si alguna distancia es menor o igual a 10 cm
+  if (distance1 <= 10 ) {
+    // Detener los motores si la distancia es menor o igual a 10 cm
+    digitalWrite(motorPin1, LOW);
+    digitalWrite(LedTrasero, HIGH);
+    digitalWrite(motorPin2, LOW);
+    Serial.println("¡Obstáculo detectado! Motores detenidos.");
+  } else {
+    // Encender los motores si no hay obstáculos
+    digitalWrite(motorPin1, HIGH);
+    digitalWrite(motorPin2, HIGH);
+    digitalWrite(LedTrasero, LOW);
+    Serial.println("Motores en marcha.");
+  }
+  
+  // Pausa de 100 milisegundos antes de la siguiente lectura
+  delay(100);
 }
